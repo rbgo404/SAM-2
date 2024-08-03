@@ -1,5 +1,8 @@
 build:
   cuda_version: "12.1.1"
-  python_packages:
-    - "vllm==0.5.3.post1"
-    - "transformers==4.43.1"
+  system_packages:
+    - "libgl1-mesa-glx"
+  run:
+    - "git clone https://github.com/rbgo404/segment-anything-2.git"
+    - "cd segment-anything-2"
+    - "pip install -e ."
