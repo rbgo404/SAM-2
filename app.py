@@ -2,9 +2,7 @@ import base64
 import numpy as np
 from PIL import Image
 from io import BytesIO
-from typing import Any, Dict
 import cv2
-import numpy as np
 from sam2.build_sam import build_sam2
 from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 from sam2.sam2_image_predictor import SAM2ImagePredictor
@@ -15,7 +13,8 @@ import supervision as sv
 
 class InferlessPythonModel:
     def initialize(self):
-        nfs_volume = "/opt/tritonserver/vol"
+        # nfs_volume = "/opt/tritonserver/vol"
+        nfs_volume = os.getenv("NFS_VOLUME")
         if os.path.exists(nfs_volume + "/sam2_hiera_large.pt") == False :
             os.system(f"wget -q https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_large.pt -P {nfs_volume}")
 
